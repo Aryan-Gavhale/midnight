@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-//import itSolutions from "../assets/it-solutions.jpeg";
-import { useState } from "react";
-import tech from "../assets/tech1.png"
+import tech from "../assets/tech1.png";
 import { Link } from "react-router-dom";
 
 const ITSolutions = () => {
@@ -10,8 +8,8 @@ const ITSolutions = () => {
   const [hoverY1, setHoverY1] = useState(0);
 
   const handleHover1 = (event) => {
-    const { offsetX, offsetY, target } = event.nativeEvent;
-    const { width, height } = target.getBoundingClientRect();
+    const { offsetX, offsetY, currentTarget } = event;
+    const { width, height } = currentTarget.getBoundingClientRect();
     setHoverX1((offsetX / width - 0.5) * 10);
     setHoverY1((offsetY / height - 0.5) * 10);
   };
@@ -22,11 +20,11 @@ const ITSolutions = () => {
   };
 
   return (
-    <section className="h-[700px] relative py-32 md:py-48 bg-gradient-to-r from-black to-gray-900 text-white transition-all duration-1000 ease-in-out mb-20">
-      <div className="absolute container mx-auto px-8 flex flex-col md:flex-row items-center justify-between bottom-30">
+    <section className="py-16 md:py-32 bg-gradient-to-r from-black to-gray-900 text-white transition-all duration-1000 ease-in-out">
+      <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between">
         {/* Description Section */}
         <motion.div
-          className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0"
+          className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0 order-2 md:order-1"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
@@ -35,19 +33,19 @@ const ITSolutions = () => {
             delay: 0.5,
           }}
         >
-          <div className="flex items-center text-7xl">
+          <div className="flex flex-col md:flex-row items-center md:items-start text-4xl md:text-6xl lg:text-7xl mb-4">
             <h1 className="poppins font-extrabold text-white">Tech</h1>
-            <h3 className="qwitcher-grypen-regular mx-6 mt-4 text-yellow-400">
+            <h3 className="qwitcher-grypen-regular mt-2 md:mt-4 md:ml-4 text-yellow-400">
               Solutions
             </h3>
           </div>
-          <p className="text-lg md:text-2xl font-medium text-gray-200 mb-8 mt-4 leading-relaxed">
+          <p className="text-base md:text-lg lg:text-2xl font-medium text-gray-200 mb-8 leading-relaxed">
             Unlock the power of technology with our expert IT solutions. From
             software development to cutting-edge innovations, we provide the
             tools and strategies to drive success for your business.
           </p>
           <motion.button
-            className="bg-[#FFD700] text-black text-lg font-semibold rounded-lg px-6 py-3 shadow-lg relative overflow-hidden"
+            className="bg-[#FFD700] text-black text-base md:text-lg font-semibold rounded-lg px-6 py-3 shadow-lg relative overflow-hidden"
             onMouseMove={handleHover1}
             onMouseLeave={resetHover1}
             whileHover={{
@@ -62,13 +60,13 @@ const ITSolutions = () => {
               damping: 15,
             }}
           >
-            <Link to="/it">Explore</Link>
+            <Link to="/it" className="block w-full h-full">Explore</Link>
           </motion.button>
         </motion.div>
 
         {/* Image Section */}
         <motion.div
-          className="w-full md:w-1/2 flex justify-center md:justify-end"
+          className="w-full md:w-1/2 flex justify-center md:justify-end order-1 md:order-2 mb-8 md:mb-0"
           initial={{ opacity: 0, scale: 0.8, x: 100 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{
@@ -78,14 +76,13 @@ const ITSolutions = () => {
           }}
         >
           <img
-    src={tech} // Replace with your IT solutions image URL
-    alt="IT Solutions"
-    className="object-cover w-4/6 h-full"
-    style={{
-      mixBlendMode: "normal", // Allows the light parts of the image to remain bright
-      
-    }}></img>
-
+            src={tech}
+            alt="IT Solutions"
+            className="object-cover w-full md:w-4/5 max-w-md"
+            style={{
+              mixBlendMode: "normal",
+            }}
+          />
         </motion.div>
       </div>
     </section>
@@ -93,3 +90,4 @@ const ITSolutions = () => {
 };
 
 export default ITSolutions;
+
