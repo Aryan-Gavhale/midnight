@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+  .lilita-one-regular {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  
+  .qwitcher-grypen-regular {
+    font-family: "Qwitcher Grypen", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .qwitcher-grypen-bold {
+    font-family: "Qwitcher Grypen", cursive;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .puppies-play-regular {
+    font-family: "Puppies Play", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .righteous-regular {
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .cormorant-upright-light {
+    font-family: "Cormorant Upright", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  /* TailwindCSS or custom styles */
+
+/* Light Background */
+.bg-light {
+  background-color: #f9f9f9; /* Light color */
+  color: #333;
+}
+
+/* Dark Background */
+.bg-dark {
+  background-color: #333; /* Dark color */
+  color: white;
+}
+/* Initial gradient */
+.gradient-transition {
+  background: linear-gradient(to right, #111111, #333333);
+  background-size: 200% 200%;
+  transition: background-size 1s ease-in-out, background-position 1s ease-in-out;
+}
+
+/* On hover, transition the gradient */
+.gradient-transition:hover {
+  background-size: 100% 100%;
+  background-position: 100% 100%;
+  background: linear-gradient(to right, #333333, #FFD700);
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
+
+

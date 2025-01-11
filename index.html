@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- In index.html -->
+
+  <style>
+    /* Paste your CSS here */
+    .u-text-fill {
+  position: relative;
+  display: inline-block;
+  color: #000; /* Default text color */
+  line-height: 1.2em;
+  overflow: hidden;
+}
+
+.u-text-fill::after {
+  content: attr(data-title); /* Copy of the text */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text_color_hover, #4c4c4c); /* Hover color */
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.u-text-fill:hover::after {
+  clip-path: circle(100% at 50% 50%);
+}
+
+  </style>
+
+
+   
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+rel="stylesheet"
+/>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Lilita+One&family=Puppies+Play&family=Qwitcher+Grypen:wght@400;700&family=Righteous&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
