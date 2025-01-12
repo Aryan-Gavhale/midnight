@@ -15,6 +15,7 @@ import AboutUs from "./components/Aboutus";
 import BlogSection from "./components/Blog";
 import UserProfile from "./components/UserProfile"
 import ContactUsPage from "./components/Contactus";
+import PropertyListing from "./components/Properties/property-listing";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="/contact" element={<ContactUsPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/realestate" element={<PropertyListing />} />
           </Routes>
         </div>
         <Footer /> {/* Footer Component is always rendered */}

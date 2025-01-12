@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import img1 from "../assets/Aryan.jpeg";
 import img2 from "../assets/Aryan.jpeg";
+import img3 from "../assets/Ayush.jpeg";
 import img4 from "../assets/Rupesh.jpeg";
 import img5 from "../assets/Nihar.jpeg";
 import { cn } from "../lib/utils.js";
@@ -52,7 +53,7 @@ const TeamSection = () => {
     {
       name: "Ayush Itkhede",
       role: "Chief Technology Officer",
-      image: img1,
+      image: img3,
     },
     {
       name: "Rupesh Jahagirdar",
@@ -70,7 +71,7 @@ const TeamSection = () => {
     <section className="bg-gradient-to-r from-black to-gray-900 text-gray-100 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto text-center mb-12 sm:mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Meet Our Team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-5xl mx-auto ">
           {teamMembers.map((member, index) => (
             <TeamMemberCard
               key={member.name}
