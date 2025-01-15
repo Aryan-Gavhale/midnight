@@ -5,8 +5,14 @@ import img1 from "../../assets/prop1.jpg"
 import img2 from "../../assets/prop2.jpg"
 import img3 from "../../assets/prop3.jpg"
 import img4 from "../../assets/prop4.jpg"
+import { useEffect } from 'react'
 
 export default function PropertyListing() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top-left corner
+  }, []);
+
   const properties = [
     {
       title: "Emerald Gardens",
@@ -75,6 +81,8 @@ export default function PropertyListing() {
       isNew: true
     }
   ]
+
+  
 
   return (
     <div className="min-h-screen bg-gray-950 px-4 py-8 mb-20">

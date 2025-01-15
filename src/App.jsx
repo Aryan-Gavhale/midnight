@@ -12,10 +12,10 @@ import Partners from "./components/Partners";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import AboutUs from "./components/Aboutus";
-import BlogSection from "./components/Blog";
 import UserProfile from "./components/UserProfile"
 import ContactUsPage from "./components/Contactus";
 import PropertyListing from "./components/Properties/property-listing";
+import BlogSection from "./components/Blog/Blogpage";
 
 const App = () => {
   return (
@@ -47,7 +47,7 @@ const App = () => {
             <Route path="/realestate" element={<PropertyListing />} />
           </Routes>
         </div>
-        <Footer /> {/* Footer Component is always rendered */}
+       <Footer></Footer> {/* Footer Component is always rendered */}
       </div>
     </Router>
   );

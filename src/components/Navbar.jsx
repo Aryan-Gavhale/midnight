@@ -11,6 +11,11 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
   const servicesRef = useRef(null);
 
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser || null);
@@ -52,27 +57,17 @@ const Navbar = () => {
             About Us
           </Link>
           <div
-            className="relative"
+            className="relative group"
             onMouseEnter={() => setIsServicesOpen(true)}
             onMouseLeave={() => setIsServicesOpen(false)}
           >
-            <button className="hover:text-[#FFD700] focus:outline-none">
+            <button className="nav-link focus:outline-none">
               Services
+              <svg className="w-4 h-4 ml-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-            {isServicesOpen && (
-              <ul className="absolute bg-[#222222] mt-2 rounded-xl shadow-lg w-48">
-                {["Real Estate", "IT", "Marketing", "Finance", "Consultant"].map(
-                  (service) => (
-                    <li
-                      key={service}
-                      className="px-6 py-3 hover:bg-[#444444] cursor-pointer"
-                    >
-                      {service}
-                    </li>
-                  )
-                )}
-              </ul>
-            )}
+            <ServicesDropdown isOpen={isServicesOpen} />
           </div>
           <Link to="/contact" className="hover:text-[#FFD700]">
             Contact Us
@@ -145,10 +140,10 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-[#222222] text-white p-4 space-y-4">
-          <Link to="/" className="block hover:text-[#FFD700]">
+          <Link to="/" className="block hover:text-[#FFD700]" onClick={closeMenu}>
             Home
           </Link>
-          <Link to="/about" className="block hover:text-[#FFD700]">
+          <Link to="/about" className="block hover:text-[#FFD700]" onClick={closeMenu}>
             About Us
           </Link>
           <button
@@ -161,20 +156,23 @@ const Navbar = () => {
             <ul className="space-y-2 ml-4">
               {["Real Estate", "IT", "Marketing", "Finance", "Consultant"].map(
                 (service) => (
-                  <li
-                    key={service}
-                    className="px-2 py-1 hover:text-[#FFD700]"
-                  >
-                    {service}
+                  <li key={service}>
+                    <Link
+                      to={`/${service.toLowerCase().replace(" ", "")}`}
+                      className="block px-6 py-3 hover:bg-gray-700 rounded-md"
+                      onClick={closeMenu}
+                    >
+                      {service}
+                    </Link>
                   </li>
                 )
               )}
             </ul>
           )}
-          <Link to="/contact" className="block hover:text-[#FFD700]">
+          <Link to="/contact" className="block hover:text-[#FFD700]" onClick={closeMenu}>
             Contact Us
           </Link>
-          <Link to="/blog" className="block hover:text-[#FFD700]">
+          <Link to="/blog" className="block hover:text-[#FFD700]" onClick={closeMenu}>
             Blog
           </Link>
           {user ? (
@@ -182,12 +180,17 @@ const Navbar = () => {
               <Link
                 to="/profile"
                 className="block hover:text-[#FFD700]"
+                onClick={closeMenu}
               >
                 Profile
               </Link>
               <button
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout();
+                  closeMenu();
+                }}
                 className="block w-full text-left hover:text-[#FFD700]"
+                
               >
                 Logout
               </button>
@@ -214,4 +217,29 @@ const Navbar = () => {
   );
 };
 
+const ServicesDropdown = ({ isOpen }) => (
+  <ul
+    className={`${
+      isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+    } absolute bg-gray-800 mt-2 rounded-xl shadow-lg w-48 transition-all duration-300 ease-in-out transform ${
+      isOpen ? 'translate-y-0' : '-translate-y-2'
+    }`}
+  >
+    {["Real Estate", "IT", "Marketing", "Finance", "Consultant"].map(
+      (service) => (
+        <li key={service}>
+          <Link
+            to={`/${service.toLowerCase().replace(' ', '')}`}
+            className="block px-6 py-3 hover:bg-gray-700 rounded-md transition duration-300"
+          >
+            {service}
+          </Link>
+        </li>
+      )
+    )}
+  </ul>
+);
+
 export default Navbar;
+
+

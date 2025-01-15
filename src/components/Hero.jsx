@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import im1 from '../assets/im1.jpeg';
-import main from "../assets/main.png";
+
+import main from "../assets/Homepage.png";
 
 const Hero = () => {
   const [hoverX1, setHoverX1] = useState(0);
@@ -36,19 +36,17 @@ const Hero = () => {
   return (
     <section className="relative bg-gradient-to-r from-black to-gray-900 text-white py-16 md:py-32">
       <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between h-full">
-        <div className="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+        <div className="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0 order-2 md:order-1">
           <motion.div
             className="mb-6"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-gradient-to-r from-[#FFD700] to-[#FFB800] leading-tight poppins">
-              Midnight
-            </h1>
-            <h3 className="text-3xl md:text-4xl lg:text-5xl qwitcher-grypen-regular mt-2 text-yellow-400">
-              Solutions
-            </h3>
+           <div className="flex flex-col md:flex-row items-center md:items-start text-4xl md:text-6xl lg:text-7xl mb-4">
+            <h1 className="poppins font-extrabold text-white">Midnight</h1>
+            <h3 className="qwitcher-grypen-regular mt-2 md:mt-4 md:ml-4 text-yellow-400">Solutions</h3>
+          </div>
           </motion.div>
 
           <motion.p
@@ -106,17 +104,19 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <div className="w-full md:w-1/2 mt-8 md:mt-0">
+        <div className="w-full md:w-1/2 lg:mt md:mt-0 order-1 md:order-2 mb-20 md:mb-0">
           <motion.div
-            className="relative h-[300px] md:h-[400px] lg:h-[480px] w-full md:w-[500px] lg:w-[600px] transform transition-transform duration-700 hover:scale-105 hover:brightness-110"
+            className="relative h-[300px] md:h-[400px] lg:h-[480px] w-full md:w-[500px] lg:w-[600px] mx-auto transform transition-transform duration-700 hover:scale-105 hover:brightness-110"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
           >
             <img
-              src={main}
+              src={main || "/placeholder.svg"}
               alt="Hero Section"
-              className="object-cover h-full w-full rounded-lg"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
             />
           </motion.div>
         </div>

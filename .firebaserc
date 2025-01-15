@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "midnight-63074",
+    "development": "midnight-63074"
+  },
+  "targets": {},
+  "etags": {}
+}

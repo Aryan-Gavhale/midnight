@@ -111,7 +111,7 @@ const Footer = () => {
           transition={{ duration: 1, delay: 1 }}
           className="text-sm text-gray-500"
         >
-          © 2024 TechWorld. All rights reserved. Designed with passion.
+          © 2025 midnightsolutions.in. All rights reserved +91 9172810750
         </motion.p>
       </div>
     </footer>
