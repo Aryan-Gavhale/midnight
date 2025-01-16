@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import logo from "../assets/navbarlogo.jpg"
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,11 +16,18 @@ const Footer = () => {
           transition={{ duration: 1, delay: 0.2 }}
         >
          <div className="flex items-center space-x-3">
+
+          <a href="/">
+
   <img
     src={logo} // Replace with the actual path to your logo image
     alt="Logo"
     className="w-[100px] h-[100px] object-contain"
   />
+          </a>
+
+          
+          
 </div>
 <div className="flex flex-col mt-2">
   <h3 className="text-gray-400 text-center">

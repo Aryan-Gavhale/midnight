@@ -64,18 +64,13 @@
   background-position: 100% 100%;
   background: linear-gradient(to right, #333333, #FFD700);
 }
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-.animate-marquee {
-  display: flex;
-  animation: marquee 20s linear infinite;
+.float {
+  animation: float 3s ease-in-out infinite;
 }
-
 

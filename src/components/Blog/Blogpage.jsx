@@ -7,9 +7,13 @@ import img2 from "../../assets/tech3.jpg"; // Importing the image
 import img3 from "../../assets/finance3.jpg"; // Importing the image
 import img4 from "../../assets/market.jpg"; // Importing the image
 import img5 from "../../assets/consulting2.jpg"; // Importing the image
+import { useEffect } from "react";
 
 const BlogSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const blogCards = [
     {

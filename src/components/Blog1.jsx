@@ -4,9 +4,11 @@ import img2 from "../assets/tech3.jpg"; // Importing the image
 import img3 from "../assets/finance3.jpg"; // Importing the image
 import img4 from "../assets/market.jpg"; // Importing the image
 import img5 from "../assets/consulting2.jpg"; // Importing the image
+import { useEffect } from "react";
 
 // BlogCard Component
 const BlogCard = ({ title, description, info, backgroundImage }) => (
+ 
     <div className="max-w-xs w-full group/card">
       <div
         className="cursor-pointer overflow-hidden relative card h-96 rounded-lg shadow-lg max-w-sm mx-auto flex flex-col justify-end bg-cover bg-center"
@@ -37,6 +39,10 @@ const BlogCard = ({ title, description, info, backgroundImage }) => (
 
 // BlogSection Component
 const BlogSection = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const blogCards = [
     {
       title: "Real Estate",

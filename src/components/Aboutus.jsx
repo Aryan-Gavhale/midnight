@@ -6,6 +6,7 @@ import img4 from "../assets/Rupesh.jpeg";
 import img5 from "../assets/Nihar.jpeg";
 import { cn } from "../lib/utils.js";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 
 
@@ -52,6 +53,11 @@ const TeamMemberCard = React.memo(({ member, index, hovered, setHovered }) => (
 TeamMemberCard.displayName = "TeamMemberCard";
 
 const TeamSection = () => {
+
+  useEffect(() => {
+      window.scrollTo(0, 0); // Scrolls to the top-left corner
+    }, []);
+
   const [hovered, setHovered] = useState(null);
 
   const teamMembers = [

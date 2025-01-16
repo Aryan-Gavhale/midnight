@@ -10,6 +10,7 @@ const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
   const servicesRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   const closeMenu = () => {
     setIsMobileMenuOpen(false);
@@ -36,16 +37,42 @@ const Navbar = () => {
       .catch((error) => console.error(error));
   };
 
+  // Close dropdown if clicking outside
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        servicesRef.current &&
+        !servicesRef.current.contains(event.target)
+      ) {
+        setIsServicesOpen(false);
+      }
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <nav className="bg-gradient-to-r from-black to-gray-900 text-white sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Brand Logo */}
         <div className="flex items-center">
-          <img
-            src={Navbarlogo}
-            alt="Brand Logo"
-            className="w-[110px] h-[50px] object-contain"
-          />
+          <a href="/">
+            <img
+              src={Navbarlogo}
+              alt="Brand Logo"
+              className="w-[110px] h-[50px] object-contain cursor-pointer"
+            />
+          </a>
         </div>
 
         {/* Desktop Navigation */}
@@ -58,13 +85,25 @@ const Navbar = () => {
           </Link>
           <div
             className="relative group"
+            ref={servicesRef}
             onMouseEnter={() => setIsServicesOpen(true)}
             onMouseLeave={() => setIsServicesOpen(false)}
           >
             <button className="nav-link focus:outline-none">
               Services
-              <svg className="w-4 h-4 ml-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <svg
+                className="w-4 h-4 ml-1 inline-block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
             <ServicesDropdown isOpen={isServicesOpen} />
@@ -139,11 +178,18 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#222222] text-white p-4 space-y-4">
+        <div
+          className="md:hidden bg-[#222222] text-white p-4 space-y-4"
+          ref={mobileMenuRef}
+        >
           <Link to="/" className="block hover:text-[#FFD700]" onClick={closeMenu}>
             Home
           </Link>
-          <Link to="/about" className="block hover:text-[#FFD700]" onClick={closeMenu}>
+          <Link
+            to="/about"
+            className="block hover:text-[#FFD700]"
+            onClick={closeMenu}
+          >
             About Us
           </Link>
           <button
@@ -190,7 +236,6 @@ const Navbar = () => {
                   closeMenu();
                 }}
                 className="block w-full text-left hover:text-[#FFD700]"
-                
               >
                 Logout
               </button>
@@ -220,17 +265,17 @@ const Navbar = () => {
 const ServicesDropdown = ({ isOpen }) => (
   <ul
     className={`${
-      isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+      isOpen ? "opacity-100 visible" : "opacity-0 invisible"
     } absolute bg-gray-800 mt-2 rounded-xl shadow-lg w-48 transition-all duration-300 ease-in-out transform ${
-      isOpen ? 'translate-y-0' : '-translate-y-2'
+      isOpen ? "translate-y-0" : "-translate-y-2"
     }`}
   >
     {["Real Estate", "IT", "Marketing", "Finance", "Consultant"].map(
       (service) => (
         <li key={service}>
           <Link
-            to={`/${service.toLowerCase().replace(' ', '')}`}
-            className="block px-6 py-3 hover:bg-gray-700 rounded-md transition duration-300"
+            to={`/${service.toLowerCase().replace(" ", "")}`}
+            className="block px-6 py-3 hover:bg-gray-700 rounded-md"
           >
             {service}
           </Link>
@@ -241,5 +286,3 @@ const ServicesDropdown = ({ isOpen }) => (
 );
 
 export default Navbar;
-
-
